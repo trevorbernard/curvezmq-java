@@ -4,6 +4,10 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 
+import org.zeromq.codec.Z85;
+
+import djb.Curve25519;
+
 public class Utils
 {
     private Utils()
@@ -24,4 +28,22 @@ public class Utils
         return bytes;
     }
 
+    public static ZCurveKeyPair randomZCurveKeyPair()
+    {
+        try {
+            byte[] pubKey = new byte[32];
+            byte[] _ = new byte[32];
+            byte[] random = random32Bytes();
+            Curve25519.keygen(pubKey, _, random);
+            return new ZCurveKeyPair(Z85.encoder(pubKey), Z85.encoder(random));
+        }
+        catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static void main(String[] args)
+    {
+        System.out.println(randomZCurveKeyPair());
+    }
 }

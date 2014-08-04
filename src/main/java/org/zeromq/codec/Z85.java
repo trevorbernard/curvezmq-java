@@ -20,7 +20,7 @@ public final class Z85
      * @param data
      * @return
      */
-    public static String Z85Encoder(byte[] data)
+    public static String encoder(byte[] data)
     {
         if (data == null || data.length % 4 != 0) {
             return null;
@@ -48,7 +48,7 @@ public final class Z85
         return new String(dest);
     }
 
-    public static byte[] Z85Decoder(String string)
+    public static byte[] decoder(String string)
     {
         // Accepts only strings bounded to 5 bytes
         if (string == null || string.length() % 5 != 0)
