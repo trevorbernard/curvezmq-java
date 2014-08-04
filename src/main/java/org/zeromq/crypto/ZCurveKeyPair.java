@@ -13,16 +13,26 @@ public class ZCurveKeyPair
         this.privateKey = privateKey;
     }
 
-    public byte[] getPublicBytes()
+    public byte[] getPublicKeyBytes()
     {
         return Z85.decoder(publicKey);
     }
 
-    public byte[] getPrivateBytes()
+    public String getPublicKey()
+    {
+        return publicKey;
+    }
+
+    public byte[] getPrivateKeyBytes()
     {
         return Z85.decoder(privateKey);
     }
-    
+
+    public String getPrivateKey()
+    {
+        return privateKey;
+    }
+
     @Override
     public String toString()
     {
